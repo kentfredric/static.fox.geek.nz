@@ -6,7 +6,7 @@ jQuery.beautyOfCode = {
         autoLoad: true,
         // the base url to alex' hosted sources
         // http://alexgorbatchev.com/wiki/SyntaxHighlighter:Hosting
-        baseUrl: 'http://alexgorbatchev.com/pub/sh/2.0.320/',
+        baseUrl: 'http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/2.0.320/',
         // the baseurl for the hosted scripts
         scripts: 'scripts/',
         // the baseurl for the hosted styles
@@ -15,7 +15,7 @@ jQuery.beautyOfCode = {
         theme: 'Default',
         // the brushes that should be loaded - case sensitive!
         // http://alexgorbatchev.com/wiki/SyntaxHighlighter:Brushes
-        brushes: ['Xml', 'JScript', 'CSharp', 'Plain'],
+        brushes: ['Xml', 'JScript', 'CSharp', 'Plain', 'Bash'],
         // overrides for configurations and defaults
         // http://alexgorbatchev.com/wiki/SyntaxHighlighter:Configuration
         config: {},

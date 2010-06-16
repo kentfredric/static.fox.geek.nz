@@ -63,6 +63,7 @@
    var core     = resolve('shCore.js','http://syntaxhighlighter.googlecode.com/svn/trunk/Scripts/shCore.js');
    var languages = { 
     'perl': resolve('shBrushPerl.js','http://nevstokes.com/includes/syntax/scripts/shBrushPerl.js'),
+    'bash': resolve('shBrushBash.js','http://nevstokes.com/includes/syntax/scripts/shBrushPerl.js')
    };
 
    inject_css = function(file, node, callback ){ 
@@ -98,6 +99,11 @@
         dp.SyntaxHighlighter.BloggerMode();
         $("code.perl").shilight({language: perl});
       });
+      load_plugin('bash',function(){
+        dp.SyntaxHighlighter.BloggerMode();
+        $("code.bash").shilight({language: bash});
+      });
+
    });
  });
 })(jQuery);

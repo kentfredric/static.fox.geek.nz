@@ -1,37 +1,32 @@
 jQuery(function($){
 
-  var format = function(){
-      $('code.perl').each(function(){
-          var node = $(this).clone();
-          node.removeClass('perl');
-          var wrap = document.createElement('pre');
-          $(wrap).append(node);
-          $(this).replaceWith( wrap );
-          $(wrap).beautifyCode('Perl');
-      });
-      $('code.darkperl').each(function(){
-          var node = $(this).clone();
-          node.removeClass('perl');
-          var wrap = document.createElement('pre');
-          $(wrap).append(node);
-          $(this).replaceWith( wrap );
+    var format = function(){
+    var nodeswitch = function(match, strip, cast ) {
+        $(match).each(function(){
+            var node = $(this).clone();
+            node.removeClass(strip);
+            var wrap = document.createElement('pre');
+            $(wrap).append(node);
+            $(this).replaceWith(wrap);
+            if( jQuery.isFunction(cast) ) {
+                cast(wrap);
+            } else {
+                $(wrap).beautifyCode(cast);
+            }
+        });
+    };
+    nodeswitch('code.perl','perl','Perl');
+    nodeswitch('code.bash','bash','bash');
+    nodeswitch('code.plaintext','plaintext','plain');
+    nodeswitch('code.darkperl','darkperl',function(wrap){ 
           $(wrap).beautifyCode('Perl',{ gutter: false, "class-name": "darkperlmod" });
- 
-      });
-      $('code.ini').each(function(){
-          var node = $(this).clone();
-          node.removeClass('ini');
-          var wrap = document.createElement('pre');
-         $(wrap).append(node);
-          $(this).replaceWith( wrap );
-          $(wrap).beautifyCode('INI');
-
-      });
-      $("div.darkperlmod div.lines").attr('style','background-color: rgba(200,255,200.0.5) !important');
+    });
+    nodeswitch('code.ini', 'ini', 'INI' );
+    $("div.darkperlmod div.lines").attr('style','background-color: rgba(200,255,200.0.5) !important');
   };
 
   $.beautyOfCode.init({
-    brushes: [ 'Perl' ],
+    brushes: [ 'Perl' , 'Bash', 'Plain'],
     theme: 'Default',
     config: {
       bloggerMode: true,
