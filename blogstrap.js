@@ -1,29 +1,42 @@
+/* vim: et sw=4 ts=4 */
 jQuery(function($){
     var debug = null;
-    var features = {
-        console: { enabled: null , code: function() { 
-            jQuery.console = function(){};
-            if ( debug ){ 
-                if ( console ){ 
-                    jQuery.console = function(){ console.log.apply( $, arguments ); };
-                } else {
-                    jQuery.console = function(){ alert( arguments ); };
+
+    var features  = {};
+
+    var newfeature = function( name , type, config ){ 
+        features[name] = { enabled: null }; 
+        var feature = features[name];
+        if ( type == "name" ) { 
+            feature.name = config;
+        }
+        if ( type == "code" ) {
+            feature.code = config;
+        }
+    };
+
+    newfeature( 'console', 'code',function() {
+                jQuery.console = function(){};
+                if ( debug ){ 
+                    if ( console ){ 
+                        jQuery.console = function(){ console.log.apply( $, arguments ); };
+                    } else {
+                        jQuery.console = function(){ alert( arguments ); };
+                    }
                 }
-            }
-            return 1;
-        }},
-        localscript: { enabled: null, code: function(){ 
+                return 1;
+    });
+    newfeature('localscript', 'code', function(){ 
             jQuery.localscript = function(){ 
                     var callparams = arguments;
                     callparams[0] = 'http://static.fox.geek.nz/' + callparams[0];
                     return $.getScript.apply( $, callparams );
             };
             return 1;
-        }},
-        beautyOfCode: { enabled: null, name: 'jquery.beautyOfCode.js' }, 
-        beautyConf: { enabled: null, name: 'beautyconf.js' },
-        googleanalytics: { enabled: null, name: 'gat.js' }
-    };
+    });
+    newfeature('beautyOfCode', 'name','jquery.beautyOfCode.js');
+    newfeature('beautyConf', 'name','beautyconf.js' );
+    newfeature('googleanalytics', 'name','gat.js' );
     var toCallback = function( arg ){
         if ( ! arg ){ 
             return function(){ };
@@ -63,11 +76,8 @@ jQuery(function($){
         }
        }
 
-    $.enableFeature('console');
-  
-    $.enableFeature('beautyOfCode', function(){
-        $.enableFeature('beautyConf'); 
-    } );
+    $.enableFeature('console');  
+    $.enableFeature('beautyConf'); 
     $.enableFeature('googleanalytics');
 });
 

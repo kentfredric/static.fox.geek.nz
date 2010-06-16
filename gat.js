@@ -1,22 +1,26 @@
 jQuery(function($){
 
-   $.console("init");
+	$.enableFeature('console', function(){
 
-   var ua       = 'UA-11853300-1';
-   var gaJsHost = (('https' == document.location.protocol) ? 'https://ssl.' : 'http://www.');
+	   $.console("init");
 
-   $.getScript(gaJsHost + 'google-analytics.com/ga.js', function(){
+	   var ua       = 'UA-11853300-1';
+	   var gaJsHost = (('https' == document.location.protocol) ? 'https://ssl.' : 'http://www.');
 
-     $.console("fetched"); 
+	   $.getScript(gaJsHost + 'google-analytics.com/ga.js', function(){
 
-     $(function($){
+	     $.console("fetched"); 
 
-       $.console("gatted"); 
-       var pageTracker = _gat._getTracker(ua);
-       pageTracker._trackPageview();
+	     $(function($){
 
-     }); /* onLoad Context */
+	       $.console("gatted"); 
+	       var pageTracker = _gat._getTracker(ua);
+	       pageTracker._trackPageview();
 
-   }); /* getScript Context */
+	     }); /* onLoad Context */
+
+	   }); /* getScript Context */
+
+	});
 
 }); /* onLoad Plugin Context */
