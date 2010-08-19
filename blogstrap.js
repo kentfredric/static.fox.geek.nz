@@ -29,7 +29,7 @@ jQuery(function($){
     newfeature('localscript', 'code', function(){ 
             jQuery.localscript = function(){ 
                     var callparams = arguments;
-                    callparams[0] = 'http://static.fox.geek.nz/' + callparams[0];
+                    callparams[0] = 'http://static2.fox.geek.nz/' + callparams[0];
                     return $.getScript.apply( $, callparams );
             };
             return 1;
