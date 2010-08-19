@@ -60,7 +60,7 @@ jQuery(function($){
             bloggerMode: true,
         },
         ready: function(){
-            jQuery.beautyOfCode.utils.loadAllScripts( ['http://static.fox.geek.nz/initbrush.js'], format);
+            jQuery.beautyOfCode.utils.loadAllScripts( ['http://static2.fox.geek.nz/initbrush.js'], format);
         }
     };
     $.enableFeature('beautyOfCode', function(){ 
